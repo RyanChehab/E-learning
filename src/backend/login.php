@@ -6,4 +6,6 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
     $password = $_POST['password'];
 }
 
+$sql = 'SELECT password FROM users where email = ?';
+
 
