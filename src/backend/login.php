@@ -1,6 +1,12 @@
 <?php
 include 'connection.php';
 
+require 'vendor/autoload.php';
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+$secret_key = 'mykey';
+
 if ($_SERVER['REQUEST_METHOD']==='POST'){
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -22,6 +28,12 @@ if($result ->num_rows>0){
     $hashed = $row['password'];
 
     if(password_verify($password,$hashed)){
+
+        $payload =[
+            "user_id" => $row['user_id'],
+            "user_type" => $row['user_type']
+        ];
+
         $response = []; 
         $response['status']= "success";
         $response['message'] = 'login successfull';
