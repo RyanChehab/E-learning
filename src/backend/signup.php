@@ -8,6 +8,15 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
     $password = $input['password'];
 }
 
+$sql_test = "select * from users where email =  ?";
+
+$test_stmt = $conn->prepare($sql_test);
+
+
+if(){
+
+}else{
+    
 $hashed = password_hash($password,PASSWORD_DEFAULT);
 
 $banned = 0;
@@ -32,4 +41,6 @@ if ($stmt->execute()){
     $response['message'] = "failure adding user";
     http_response_code(400);
     echo json_encode($response);
+}  
+
 }
