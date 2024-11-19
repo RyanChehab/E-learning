@@ -8,8 +8,9 @@ use Firebase\JWT\Key;
 $secret_key = 'mykey';
 
 if ($_SERVER['REQUEST_METHOD']==='POST'){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $input = json_decode(file_get_contents("php://input"),true);
+    $email = $input['email'];
+    $password = $input['password'];
 }
 
 $sql = 'SELECT user_id, password, user_type FROM users WHERE email = ?';
@@ -33,7 +34,8 @@ if($result ->num_rows>0){
             "user_id" => $row['user_id'],
             "user_type" => $row['user_type']
         ];
-        
+
+        // this is the token 
         $jwt = JWT::encode($payload,$secret_key, 'HS256');
 
         $response = [
