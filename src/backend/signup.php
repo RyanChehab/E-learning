@@ -12,9 +12,19 @@ $sql_test = "select * from users where email =  ?";
 
 $test_stmt = $conn->prepare($sql_test);
 
+$test_stmt->bind_param("s", $email);
 
-if(){
+$test_stmt->execute();
 
+$result = $test_stmt->get_result();
+
+if($result->num_rows > 0){
+    $response =[];
+    $response['status'] = "failed";
+    $response['message'] = "user already registered";   
+    http_response_code(400);
+    echo json_encode($response);
+    exit;
 }else{
     
 $hashed = password_hash($password,PASSWORD_DEFAULT);
