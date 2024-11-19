@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Login = () =>{
 
@@ -27,28 +28,32 @@ const Login = () =>{
     return(
         <div>
             <h1>Login</h1>
-
-            <input type="text"
-            name = "email"
-            placeholder="example@gmail.com"
-            value= {email}
-            onChange={(e)=>{
-                console.log(email)
-                setEmail(e.target.value)
-            }}
-            required
-            />
-            <input type="password" 
-            name = "password"
-            placeholder="***"
-            value = {password}
-            onChange={ (e) =>{
-                setPassword(e.target.value)
-            }
-            }
-            />
-            
-            <button type="submit">Login</button>
+            <form onClick={handleSubmit}>
+                <input type="text"
+                name = "email"
+                placeholder="example@gmail.com"
+                value= {email}
+                onChange={(e)=>{
+                    console.log(email)
+                    setEmail(e.target.value)
+                }}
+                required
+                />
+                <input type="password" 
+                name = "password"
+                placeholder="***"
+                value = {password}
+                onChange={ (e) =>{
+                    setPassword(e.target.value)
+                }
+                }
+                />
+                
+                <button type="submit">Login</button>
+            </form>
+            {message && <p>{message}</p>}
+            <br />
+            <p>Dont have an account? <Link to="/Signup">Signup</Link> now!</p>
         </div>
     )
 
