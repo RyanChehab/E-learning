@@ -21,6 +21,7 @@ $stmt->bind_param("ssssi",$name,$email,$hashed,$user_type,$banned);
 if ($stmt->execute()){
     $response =[];
     $response['status'] = "success";
+    $response['message'] = "user added";
     http_response_code(200);
     echo json_encode($response);
 }else{
