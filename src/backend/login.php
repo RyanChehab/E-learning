@@ -1,7 +1,7 @@
 <?php
 include 'connection.php';
 
-require 'vendor/autoload.php';
+require 'C:\xampp\htdocs\elearning\vendor\autoload.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
     $password = $_POST['password'];
 }
 
-$sql = 'SELECT password FROM users where email = ?';
+$sql = 'SELECT user_id, password, user_type FROM users WHERE email = ?';
 
 $stmt = $conn->prepare($sql);
 
@@ -33,10 +33,15 @@ if($result ->num_rows>0){
             "user_id" => $row['user_id'],
             "user_type" => $row['user_type']
         ];
+        
+        $jwt = JWT::encode($payload,$secret_key, 'HS256');
 
-        $response = []; 
-        $response['status']= "success";
-        $response['message'] = 'login successfull';
+        $response = [
+            'status' => 'success',
+            'message' => 'Login successful',
+            'user_id' => $row['user_id'],
+            'token' => $jwt
+        ]; 
         http_response_code(200);
         echo json_encode($response);
     }else{
