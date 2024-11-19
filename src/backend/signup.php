@@ -2,15 +2,17 @@
 include 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD']==='POST'){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $user_type = $_POST['user_type'];
+    $input = json_decode(file_get_contents("php://input"),true);
+    $name = $input['name'];
+    $email = $input['email'];
+    $password = $input['password'];
 }
 
 $hashed = password_hash($password,PASSWORD_DEFAULT);
 
 $banned = 0;
+
+$user_type= "student";
 
 $sql = "INSERT INTO users(name,email,password,user_type,banned) VALUES(?, ?, ?, ?, ?)";
 
