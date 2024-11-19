@@ -17,12 +17,11 @@ const Signup = ()=>{
                     "email" : email,
                     "password" : password,
             });
-    
                 setMessage(response.data.message);            
             } catch (error) {
-
-            console.error("Error:", error);
-            setMessage("Failed");
+                if(error.response){
+                    setMessage(error.response.data.message)
+                }
         }
     };
     
@@ -37,7 +36,6 @@ const Signup = ()=>{
                     value={name}
                     onChange={(e) =>{
                         setname(e.target.value)
-                        console.log(name)
                     }}
                     required
                 />
