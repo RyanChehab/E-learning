@@ -1,6 +1,7 @@
 import React,{useState} from "react";
+import axios from "axios";
 
-const login = () =>{
+const Login = () =>{
 
     const [message,setMessage] = useState("")
     const [email,setEmail] = useState("");
@@ -17,9 +18,39 @@ const login = () =>{
             setMessage(response.data.message);
         }catch(error){
             if (error.response){
-                setMessage(response.data.message);
+                setMessage(error.response.data.message);
             }
         }
     }
 
+    return(
+        <div>
+            <h1>Login</h1>
+
+            <input type="text"
+            name = "email"
+            placeholder="example@gmail.com"
+            value= {email}
+            onChange={(e)=>{
+                console.log(email)
+                setEmail(e.target.value)
+            }}
+            required
+            />
+            <input type="password" 
+            name = "password"
+            placeholder="***"
+            value = {password}
+            onChange={ (e) =>{
+                setPassword(e.target.value)
+            }
+            }
+            />
+        </div>
+    )
+
+
+
 }
+
+export default Login;
