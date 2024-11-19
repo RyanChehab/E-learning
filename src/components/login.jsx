@@ -16,6 +16,7 @@ const Login = () =>{
                 "password" : password,
             })
             setMessage(response.data.message);
+            console.log(response.data)
         }catch(error){
             if (error.response){
                 setMessage(error.response.data.message);
@@ -46,6 +47,8 @@ const Login = () =>{
             }
             }
             />
+            
+            <button type="submit">Login</button>
         </div>
     )
 
