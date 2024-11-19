@@ -27,6 +27,7 @@ if ($stmt->execute()){
 }else{
     $response =[];
     $response['status'] = "failed";
+    $response['message'] = "failure adding user";
     http_response_code(400);
     echo json_encode($response);
 }
