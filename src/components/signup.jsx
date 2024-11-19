@@ -1,12 +1,16 @@
 import React,{useState} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = ()=>{
-    
+    // init variables along with there setting functions
     const [message,setMessage] = useState("");
     const [name,setname] = useState("");
     const [email,setemail] = useState("");
     const [password,setpassword] = useState("");
+
+    // init navigate
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,7 +21,8 @@ const Signup = ()=>{
                     "email" : email,
                     "password" : password,
             });
-                setMessage(response.data.message);            
+                setMessage(response.data.message);    
+                navigate("/Login");        
             } catch (error) {
                 if(error.response){
                     setMessage(error.response.data.message)
