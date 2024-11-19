@@ -1,40 +1,28 @@
 import React,{useState} from "react";
+import axios from "axios";
 
 const Signup = ()=>{
-    const [formData, setFormData] = useState({
-        name : "",
-        email : "",
-        password : "",
-        user_type:"",
-    })
+    
     const [message,setMessage] = useState("");
-
     const [name,setname] = useState("");
     const [email,setemail] = useState("");
     const [password,setpassword] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        const formData = new FormData();
-        formData.append(name,)
-    
+
         try {
-            const response = await fetch("http://localhost/elearning/src/backend/signup.php", {
-                method: "POST",
-                body: formData,
+            const response = await axios.post("http://localhost/elearning/src/backend/signup.php", {
+                    "name": name,
+                    "email" : email,
+                    "password" : password,
             });
     
-            if (response.ok) {
-                const data = await response.json(); 
-                setMessage(data.message);
-            } else {
-                const errorText = await response.text();
-                setMessage(errorText || "Signup failed!");
-            }
-        } catch (error) {
+                setMessage(response.data.message);            
+            } catch (error) {
+
             console.error("Error:", error);
-            setMessage("Signup failed!");
+            setMessage("Failed");
         }
     };
     
@@ -46,7 +34,7 @@ const Signup = ()=>{
                     type="text"
                     name="name"
                     placeholder="Name"
-                    value={formData.name}
+                    value={name}
                     onChange={(e) =>{
                         setname(e.target.value)
                         console.log(name)
@@ -57,7 +45,7 @@ const Signup = ()=>{
                     type="email"
                     name="email"
                     placeholder="Email"
-                    value={formData.email}
+                    value={email}
                     onChange={(e)=>{
                         setemail(e.target.value)
                     }}
@@ -67,7 +55,7 @@ const Signup = ()=>{
                     type="password"
                     name="password"
                     placeholder="Password"
-                    value={formData.password}
+                    value={password}
                     onChange={(e)=>{
                         setpassword(e.target.value)
                     }}
