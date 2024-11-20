@@ -41,7 +41,6 @@ if($result ->num_rows>0){
         $response = [
             'status' => 'success',
             'message' => 'Login successful',
-            'user_id' => $row['user_id'],
             'token' => $jwt
         ]; 
         http_response_code(200);

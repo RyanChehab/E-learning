@@ -23,9 +23,18 @@ const Login = () =>{
             
             // decoding the passed token's payload
             const decodedToken = jwtDecode(data.token);
+            const userType = decodedToken.user_type;
+            
             // storing the token in localStorage
             localStorage.setItem("token",data.token)
 
+            if (userType === "admin") {
+                navigate("/admin");
+            } else if (userType === "student") {
+                navigate("/student");
+            } else if (userType === "instructor") {
+                navigate("/instructor");
+            }
 
         }catch(error){
             if (error.response){
