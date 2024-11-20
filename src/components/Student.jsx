@@ -1,7 +1,9 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import axios from "axios";
 
-const Students = (){
+const Students = ()=>{
+
+    const [students,setStudents] = useState([]);
 
     const read= async() =>{
         try{
@@ -10,9 +12,14 @@ const Students = (){
             })
             console.log(response.data)
         }catch(erro){
-            console.log(response.error)
+            console.error(response.error)
         }
     }
+
+    useEffect(()=>{
+        read();
+    },[])
+    
     return(
         <div></div>
     )
