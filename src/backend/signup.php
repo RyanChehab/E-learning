@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
     $name = $input['name'];
     $email = $input['email'];
     $password = $input['password'];
+    $user_type = $input['user_type'];
 }
 
 $sql_test = "select * from users where email =  ?";
@@ -31,7 +32,7 @@ $hashed = password_hash($password,PASSWORD_DEFAULT);
 
 $banned = 0;
 
-$user_type= "student";
+// $user_type= "student";
 
 $sql = "INSERT INTO users(name,email,password,user_type,banned) VALUES(?, ?, ?, ?, ?)";
 
