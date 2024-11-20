@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 
 import Signup from './components/Signup';
 import Login from './components/Login';
+import Admin from "./components/AdminPanel";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element = {<Navigate to="/Login" />} />
         <Route path='/Signup' element = {<Signup />} />
         <Route path='/Login' element = {<Login />} />
+        <Route path='/AdminPanel' element = {<Admin />} />
       </Routes>
     </Router>
     
