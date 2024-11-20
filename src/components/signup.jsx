@@ -20,9 +20,11 @@ const Signup = ()=>{
                     "name": name,
                     "email" : email,
                     "password" : password,
+                    "user_type" : "student"
             });
                 setMessage(response.data.message);    
                 navigate("/Login");        
+                alert("Student account created")
             } catch (error) {
                 if(error.response){
                     setMessage(error.response.data.message)

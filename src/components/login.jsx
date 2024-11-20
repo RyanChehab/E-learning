@@ -2,8 +2,11 @@ import React,{useState} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const Login = () =>{
+
+    const navigate = useNavigate();
     // init variables along with there setting functions
     const [message,setMessage] = useState("")
     const [email,setEmail] = useState("");
@@ -22,18 +25,18 @@ const Login = () =>{
             console.log(response.data)
             
             // decoding the passed token's payload
-            const decodedToken = jwtDecode(data.token);
+            const decodedToken = jwtDecode(response.data.token);
             const userType = decodedToken.user_type;
-            
+
             // storing the token in localStorage
-            localStorage.setItem("token",data.token)
+            localStorage.setItem("token",response.data.token)
 
             if (userType === "admin") {
-                navigate("/admin");
-            } else if (userType === "student") {
-                navigate("/student");
-            } else if (userType === "instructor") {
-                navigate("/instructor");
+                navigate("/adminPanel");
+            // } else if (userType === "student") {
+            //     navigate("/student");
+            // } else if (userType === "instructor") {
+            //     navigate("/instructor");
             }
 
         }catch(error){
