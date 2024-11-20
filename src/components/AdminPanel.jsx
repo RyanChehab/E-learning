@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 
 const Admin = () =>{
+    const [activeSection, setActiveSection] = useState("students")
     return(
-        <>
-        <button className="admin-btn">Students</button>
-        <button className="admin-btn">Instructos</button>
-        <button className="admin-btn">Courses</button>
-        </>
+        <div className="AdminPanel">
+        <button className="admin-btn" onClick={setActiveSection("students")}>Students</button>
+        <button className="admin-btn" onClick={setActiveSection("instructors")}>Instructos</button>
+        <button className="admin-btn"  onClick={() => setActiveSection("courses")}>Courses</button>
+        </div>
 
     )
 }
