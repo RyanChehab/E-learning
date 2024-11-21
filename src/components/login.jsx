@@ -53,7 +53,7 @@ const Login = () =>{
     return(
         <div>
             <h1>Login</h1>
-            <form onClick={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <input type="text"
                 name = "email"
                 placeholder="example@gmail.com"

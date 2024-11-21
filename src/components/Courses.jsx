@@ -29,13 +29,28 @@ const CourseList = ()=>{
     const addCourse = (id)=>{
         console.log("working", id)
     }
+    // state for form input
+    const [title,setTitle] = useState("")
+    const [description,setDescription] = useState("")
 
+    // function for adding courses
+    const handleSubmit = ()=>{}
 return(
     <>
         <div>
             <h2>Course List</h2>
             <br />
-            
+            <form onSubmit= {handleSubmit()}>
+                <label>Title</label>
+                <input 
+                type="text"
+                onChange = {(e)=>{
+                    setTitle(e.target.value)
+                }}
+                value={title}
+                required
+                />
+            </form>
 
             {/* existing courses */}
             <ul>
