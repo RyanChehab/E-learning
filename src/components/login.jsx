@@ -14,11 +14,15 @@ const Login = () =>{
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
 
         try{
             const response = await axios.post("http://localhost/elearning/src/backend/login.php",{
                 "email" : email,
                 "password" : password,
+                header: {
+                    "Content-Type": "application/json",
+                }
             })
             // when login successful
             setMessage(response.data.message);
