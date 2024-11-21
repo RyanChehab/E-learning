@@ -9,9 +9,20 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
 
     $stmt->execute();
 
-    $stmt->get_result();
+    $result = $stmt->get_result();
     
     $rows=[];
+
+    while($row = $result->fetch_assoc()){
+        $rows[] = $row;
+    }
+
+    $response = [];
+    $response['status'] = "success";
+    $response['result'] = $rows;
+    json_encode()
+
+
 }
 
 // $input = json_decode(file_get_contents("php://input"),true)
