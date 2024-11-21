@@ -36,11 +36,16 @@ const CourseList = ()=>{
     // function for adding courses
     const handleSubmit = ()=>{
         try{
-            const response = axios.post("", {
-                
+            const response = axios.post("http://localhost/elearning/src/backend/add_course.php", {
+                body:{ "title":title,
+                        "description":description
+                },
+                header:{
+                    "Content-Type": "application/json"
+                }
             })
-        }catch{
-
+        }catch(error){
+            error.log(error);
         }
     }
 return(
@@ -49,18 +54,7 @@ return(
             <h2>Course List</h2>
             <br />
             <form onSubmit= {handleSubmit}>
-                <label>Title</label>
-                <input 
-                type="text"
-                value={description}
-                onChange = {(e)=>{
-                    setDescription(e.target.value)
-                }}
-                
-                required
-                />
-                {" "}
-                <label>Description</label>
+            <label>Description</label>
                 <input 
                 type="text"
                 value={title}
@@ -70,6 +64,19 @@ return(
                 required
                 />
 
+                {" "} 
+
+                <label>Description</label>
+                <input 
+                type="text"
+                value={description}
+                onChange = {(e)=>{
+                    setDescription(e.target.value)
+                }}
+                
+                required
+                />
+                
                 <button type="submit">Add Course</button>
                 
             </form>
