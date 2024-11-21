@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import StudentsList from "./Student";
 import InstructorsList from "./Instructors";
+import CourseList from "./Courses";
+
 const Admin = () =>{
     const [activeSection, setActiveSection] = useState("students")
     return(
@@ -19,8 +21,7 @@ const Admin = () =>{
         <div className="admin-content">
         {activeSection === "students" && <StudentsList />}
         {activeSection === "instructors" && <InstructorsList/>}
-        {/* {activeSection === "instructors" && <Instructors/>}
-        {activeSection === "courses" && <Courses />} */}
+        {activeSection === "courses" && <CourseList />} 
         </div> 
         </>
     )
