@@ -18,13 +18,13 @@ const InstructorsList = ()=>{
         }
     }
 
-    useEffect(()=>{
-        read();
-    })
+    useEffect(() => {
+        read(); // Fetch students when mounted
+      }, []);
 
     useEffect(()=>{
-        console.log("updated students:",instructors)
-     },[instructors])
+       console.log("updated instructors:",instructors)
+    },[instructors])
 
     // banning a user
     const banStudent = async (instructorId) => {
@@ -44,7 +44,7 @@ const InstructorsList = ()=>{
 
     return(
         <div>
-            <h2>Students Lists</h2>
+            <h2>Instructors Lists</h2>
             <ul>
                 {instructors.map((instructor, index) => (
                 <li key={index}>
