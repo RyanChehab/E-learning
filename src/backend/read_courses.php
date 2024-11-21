@@ -18,9 +18,8 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
     }
 
     $response = [];
-    $response['status'] = "success";
     $response['result'] = $rows;
-    json_encode()
+    echo json_encode($response);
 
 
 }
