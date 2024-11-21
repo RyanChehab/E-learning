@@ -35,13 +35,13 @@ const StudentsList = ()=>{
         <div>
             <h2>Students Lists</h2>
             <ul>
-        {students.map((student, index) => (
-          <li key={index}>
-            {student.id} - {student.email}{" "}
-            <button onClick={() => banStudent(student.id)}>Ban</button>
-          </li>
-        ))}
-      </ul>
+                {students.map((student, index) => (
+                <li key={index}>
+                    {student.id} - {student.email}{" "}
+                    <button onClick={() => banStudent(student.user_id)}>Ban</button>
+                </li>
+                ))}
+            </ul>
         </div>
     )
 }
