@@ -27,8 +27,19 @@ const StudentsList = ()=>{
        console.log("updated students:",students)
     },[students])
 
-    const banStudent =(studentId) => {
-        console.log(`ban student with ID: ${studentId}`)
+    const [banned_states,setBan] = useState([]);
+    const banStudent = async (studentId) => {
+        try{
+            const response = await axios.post("http://localhost/elearning/src/backend/ban.php",{
+                "user_id":studentId,
+                header: {
+                    "Content-Type": "application/json",
+                }
+            })
+            console.log("done")
+        }catch(error){
+            console.log("user wasnt banned successfully ")
+        }
     }
 
     return(
