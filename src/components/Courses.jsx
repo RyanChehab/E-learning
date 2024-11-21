@@ -34,22 +34,38 @@ const CourseList = ()=>{
     const [description,setDescription] = useState("")
 
     // function for adding courses
-    const handleSubmit = ()=>{}
+    const handleSubmit = ()=>{
+
+    }
 return(
     <>
         <div>
             <h2>Course List</h2>
             <br />
-            <form onSubmit= {handleSubmit()}>
+            <form onSubmit= {handleSubmit}>
                 <label>Title</label>
                 <input 
                 type="text"
+                value={description}
+                onChange = {(e)=>{
+                    setDescription(e.target.value)
+                }}
+                
+                required
+                />
+                {" "}
+                <label>Description</label>
+                <input 
+                type="text"
+                value={title}
                 onChange = {(e)=>{
                     setTitle(e.target.value)
                 }}
-                value={title}
                 required
                 />
+
+                <button type="submit">Add Course</button>
+                
             </form>
 
             {/* existing courses */}
@@ -57,7 +73,7 @@ return(
                 {courses.map((course, index) => (
                 <li key={index}>
                     {course.title} - {course.description}{" "}
-                    <button onClick={() => addCourse(course.course_id)}>Add course</button>
+                    <button onClick={() => addCourse(course.course_id)}>Delete course</button>
                 </li>
                 ))}
             </ul>
