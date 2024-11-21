@@ -13,5 +13,8 @@ $stmt= $conn->prepare($sql);
 
 $stmt-> bind_param("i", $user_id);
 
-$stmt->execute();
-
+if ($stmt->execute()){
+    echo json_encode(["success" => true, "message" => "user banned"]);
+}else{
+    echo json_encode(["success" => false, "message" => "failed to ban user "]);
+}
