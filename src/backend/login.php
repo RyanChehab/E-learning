@@ -45,12 +45,14 @@ if($result ->num_rows>0){
         ]; 
         http_response_code(200);
         echo json_encode($response);
+        exit;
     }else{
         $response = []; 
         $response['status']= "failed";
         $response['message'] = 'login failed';
         http_response_code(400);
         echo json_encode($response);
+        exit;
     }
 
 }
