@@ -26,22 +26,28 @@ const CourseList = ()=>{
         console.log("updated courses" , courses)
     },[courses])
 
-    const addCourse = ()=>{
-        console.log("working")
+    const addCourse = (id)=>{
+        console.log("working", id)
     }
 
 return(
-    <div>
-        <h2>Course List</h2>
-        <ul>
-            {courses.map((course, index) => (
-            <li key={index}>
-                {course.title} - {course.description}{" "}
-                <button onClick={() => addCourse()}>Add course</button>
-            </li>
-            ))}
-        </ul>
-    </div>
+    <>
+        <div>
+            <h2>Course List</h2>
+            <br />
+            
+
+            {/* existing courses */}
+            <ul>
+                {courses.map((course, index) => (
+                <li key={index}>
+                    {course.title} - {course.description}{" "}
+                    <button onClick={() => addCourse(course.course_id)}>Add course</button>
+                </li>
+                ))}
+            </ul>
+        </div>
+    </>
 )
 }
 export default CourseList;
