@@ -35,7 +35,13 @@ const CourseList = ()=>{
 
     // function for adding courses
     const handleSubmit = ()=>{
+        try{
+            const response = axios.post("", {
+                
+            })
+        }catch{
 
+        }
     }
 return(
     <>
